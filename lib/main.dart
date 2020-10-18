@@ -42,10 +42,33 @@ class MyApp extends StatelessWidget {
                   trailing: Text("..."),
                   title: Text(Movies[index]),
                   subtitle: Text(""),
-                  onTap: () => debugPrint,
+                  onTap: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MovieListViewDetails()))
+                  },
                 ),
               );
             }),
+      ),
+    );
+  }
+}
+
+class MovieListViewDetails extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Movies"),
+        backgroundColor: Colors.blueGrey.shade900,
+      ),
+      body: new Container(
+        child: RaisedButton(
+          onPressed: () {},
+          child: Text("Go Back"),
+        ),
       ),
     );
   }
