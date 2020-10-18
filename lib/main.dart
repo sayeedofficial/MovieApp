@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import './model/movie.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final List Movies = [
+  final List<Movie> movieList= Movie.getMovies();
+  final List movies = [
     "Titanic",
     "Blade Runner",
     "Rambo",
@@ -16,17 +17,25 @@ class MyApp extends StatelessWidget {
     "Game of Thrones",
     "Vikings"
   ];
-
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-            title: Text("My Fav Movies"),
+            title: Text(
+              "My Fav Movies",
+            ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.only(right: 110),
+                child: Icon(Icons.movie),
+              )
+            ],
+            centerTitle: true,
             backgroundColor: Colors.blueGrey.shade900),
         backgroundColor: Colors.blueGrey.shade400,
         body: ListView.builder(
-            itemCount: Movies.length,
+            itemCount: movies.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 elevation: 4.5,
@@ -40,13 +49,15 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   trailing: Text("..."),
-                  title: Text(Movies[index]),
+                  title: Text(movies[index]),
                   subtitle: Text(""),
                   onTap: () => {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MovieListViewDetails()))
+                            builder: (context) => MovieListViewDetails(
+                                  movieName: "${movies.elementAt(index)}",
+                                )))
                   },
                 ),
               );
@@ -57,11 +68,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MovieListViewDetails extends StatelessWidget {
+  final String movieName;
+  const MovieListViewDetails({Key key, this.movieName}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Movies"),
+          title: Text("${this.movieName}"),
           backgroundColor: Colors.blueGrey.shade900,
         ),
         body: new Center(
@@ -70,7 +83,7 @@ class MovieListViewDetails extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text("Go Back"),
+              child: Text("GoBack ${this.movieName}"),
             ),
           ),
         ));
