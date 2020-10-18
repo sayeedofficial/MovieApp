@@ -29,9 +29,20 @@ class MyApp extends StatelessWidget {
             itemCount: Movies.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
+                elevation: 4.5,
                 color: Colors.white,
                 child: ListTile(
+                  leading: CircleAvatar(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(14)),
+                      child: Text("H"),
+                    ),
+                  ),
+                  trailing: Text("..."),
                   title: Text(Movies[index]),
+                  subtitle: Text(""),
+                  onTap: () => debugPrint,
                 ),
               );
             }),
