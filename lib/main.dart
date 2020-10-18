@@ -60,16 +60,19 @@ class MovieListViewDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movies"),
-        backgroundColor: Colors.blueGrey.shade900,
-      ),
-      body: new Container(
-        child: RaisedButton(
-          onPressed: () {},
-          child: Text("Go Back"),
+        appBar: AppBar(
+          title: Text("Movies"),
+          backgroundColor: Colors.blueGrey.shade900,
         ),
-      ),
-    );
+        body: new Center(
+          child: new Container(
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Go Back"),
+            ),
+          ),
+        ));
   }
 }
